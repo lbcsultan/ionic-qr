@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      QRCode Scanner
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,38 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">QR Scanner</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+
+  <ion-button expand="full" (click)="startScan()">
+    <ion-icon slot="start" name="scan-outline"></ion-icon>
+    Start Scan
+  </ion-button>
+
+  <ion-button expand="full" (click)="reset()" color="warning" *ngIf="scanResult">
+    <ion-icon slot="start" name="refresh"></ion-icon>
+    Reset
+  </ion-button>
+
+  <ion-button expand="full" (click)="stopScan()" color="danger" *ngIf="scanActive">
+    <ion-icon slot="start" name="close"></ion-icon>
+    Stop Scan
+  </ion-button>
+
+  <video #video [hidden]="!scanActive" width="100%"></video>
+
+  <canvas #canvas hidden></canvas>
+
+  <ion-card *ngIf="scanResult">
+    <ion-card-header>
+      <ion-card-title>QR Code</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Scan Result: {{ scanResult }}
+      Verify Signature: {{ verified }}
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

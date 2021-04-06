@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      QRCode Generator
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,39 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">QRGen ngx-qrcode </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-item>
+    <ion-label>Product</ion-label>
+    <ion-input type="text" placeholder="" [(ngModel)]="product"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Price</ion-label>
+    <ion-input type="number" placeholder="" [(ngModel)]="price"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>URL</ion-label>
+    <ion-input type="url" placeholder="" [(ngModel)]="url"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input type="email" placeholder="" [(ngModel)]="email"></ion-input>
+  </ion-item>
+  <ion-button expand="full" (click)="genQR()">
+    <ion-icon slot="start" name="qr-code-outline"></ion-icon>
+    Generate QRCode
+  </ion-button>
+  <ion-card>
+    <ngx-qrcode
+      [elementType]="elementType"
+      [value]="myAngularxQrCode"
+      [width]="300"
+      cssClass="aclass"
+      errorCorrectionLevel="L">
+    </ngx-qrcode>
+  </ion-card>
+
+
 </ion-content>
